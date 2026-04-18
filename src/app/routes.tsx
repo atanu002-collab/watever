@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router'
-import Dashboard from './pages/dashboard'
-import LiveFeed from './pages/liveFeed'
-import Security from './pages/security'
-import Alerts from './pages/alerts'
+import { Dashboard } from './pages/dashboard'
+import { LiveFeed } from './pages/liveFeed'
+import { Security } from './pages/security'
+import { Alerts } from './pages/alerts'
 
 export const router = createBrowserRouter([
   {
