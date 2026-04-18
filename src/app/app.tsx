@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { WebcamCapture } from './components/WebcamCapture';
-import { ThreatProfile } from './components/ThreatProfile';
-import { ControlPanel } from './components/ControlPanel';
+import { WebcamCapture } from './components/webcamCapture';
+import { ThreatProfile } from './components/threatProfile';
+import { ControlPanel } from './components/controlPanel';
 import { Skull } from 'lucide-react';
 
 // Mock AI threat profile generation
