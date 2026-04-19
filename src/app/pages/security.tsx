@@ -1,10 +1,55 @@
 import { Link } from "react-router";
 import { ArrowLeft, Shield, Eye } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Security() {
   const [faceDetection, setFaceDetection] = useState(true);
   const [motionDetection, setMotionDetection] = useState(true);
+  const [status, setStatus] = useState({
+    cameraConnected: false,
+    detectionMode: "Unknown",
+    version: "—"
+  });
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/settings")
+      .then(r => r.json())
+      .then(data => {
+        setFaceDetection(data.faceDetection);
+        setMotionDetection(data.motionDetection);
+      })
+      .catch(() => console.log("Backend not running, using defaults"));
+
+    fetch("http://localhost:8000/api/status")
+      .then(r => r.json())
+      .then(setStatus)
+      .catch(() => console.log("Backend not running, using defaults"));
+  }, []);
+
+  const updateSetting = async (key: string, value: boolean) => {
+    const updated = {
+      faceDetection,
+      motionDetection,
+      [key]: value,
+    };
+    await fetch("http://localhost:8000/api/settings", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updated),
+    }).catch(() => console.log("Backend not running"));
+  };
+
+  const handleFaceToggle = () => {
+    const next = !faceDetection;
+    setFaceDetection(next);
+    updateSetting("faceDetection", next);
+  };
+
+  const handleMotionToggle = () => {
+    const next = !motionDetection;
+    setMotionDetection(next);
+    updateSetting("motionDetection", next);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black text-gray-100">
@@ -54,7 +99,7 @@ export function Security() {
                   </div>
                 </div>
                 <button
-                  onClick={() => setFaceDetection(!faceDetection)}
+                  onClick={handleFaceToggle}
                   className={`w-12 h-6 rounded-full transition-colors ${
                     faceDetection ? "bg-cyan-500" : "bg-gray-600"
                   }`}
@@ -78,7 +123,7 @@ export function Security() {
                   </div>
                 </div>
                 <button
-                  onClick={() => setMotionDetection(!motionDetection)}
+                  onClick={handleMotionToggle}
                   className={`w-12 h-6 rounded-full transition-colors ${
                     motionDetection ? "bg-cyan-500" : "bg-gray-600"
                   }`}
@@ -104,17 +149,19 @@ export function Security() {
             <div className="space-y-3">
               <div className="p-4 bg-black/40 rounded border border-cyan-500/20">
                 <p className="text-gray-200 mb-2">Camera Status</p>
-                <p className="text-cyan-400 font-mono">Connected</p>
+                <p className="text-cyan-400 font-mono">
+                  {status.cameraConnected ? "Connected" : "Disconnected"}
+                </p>
               </div>
 
               <div className="p-4 bg-black/40 rounded border border-cyan-500/20">
                 <p className="text-gray-200 mb-2">Detection Mode</p>
-                <p className="text-cyan-400 font-mono">Active</p>
+                <p className="text-cyan-400 font-mono">{status.detectionMode}</p>
               </div>
 
               <div className="p-4 bg-black/40 rounded border border-cyan-500/20">
                 <p className="text-gray-200 mb-2">System Version</p>
-                <p className="text-cyan-400 font-mono">1.0</p>
+                <p className="text-cyan-400 font-mono">{status.version}</p>
               </div>
             </div>
           </div>

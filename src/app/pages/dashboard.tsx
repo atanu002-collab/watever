@@ -31,7 +31,7 @@ export function Dashboard() {
           </div>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2git gap-6 max-w-6xl mx-auto">
           <Link to="/live-feed" className="group">
             <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-8 backdrop-blur-sm hover:border-cyan-500 transition-all cursor-pointer">
               <Camera className="w-16 h-16 mx-auto mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
@@ -56,17 +56,6 @@ export function Dashboard() {
             </div>
           </Link>
 
-          <Link to="/alerts" className="group">
-            <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-8 backdrop-blur-sm hover:border-cyan-500 transition-all cursor-pointer">
-              <AlertTriangle className="w-16 h-16 mx-auto mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h2 className="text-center text-cyan-400 uppercase tracking-wider mb-2">
-                Alerts
-              </h2>
-              <p className="text-center text-gray-500 text-sm">
-                Threat notifications
-              </p>
-            </div>
-          </Link>
         </div>
 
         <div className="mt-12 bg-black/40 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm max-w-6xl mx-auto">
