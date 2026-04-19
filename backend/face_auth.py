@@ -41,4 +41,4 @@ def train_identifer():
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
                 # finds face 
-                detected_faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+                detected_faces = face_cascade.detectMultiScale(gray, 0.9, 5)
