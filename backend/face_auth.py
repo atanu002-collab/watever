@@ -7,3 +7,10 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 # identify which part of imgs are faces 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+# identifier works w numbers, so this keeps a dictionary that associates numbers with names
+id_to_name = {}
+
+def train_identifer():
+    faces = []
+    labels = []
