@@ -20,7 +20,7 @@ def train_recognizer():
     current_id = 0
 
     # loops thru every photo in authorized_agents
-    for idx, filename in enumerate(os.listdir('authorized_agents')):
+    for filename in os.listdir('authorized_agents'):
         if filename.endswith('.jpg') or filename.endswith('.png'):
             
             # gets persons name from the filename (ex. "andrew_1" -> "andrew")
@@ -37,32 +37,49 @@ def train_recognizer():
             # loads image + loads in grayscale so identifier can use it
             img_path = os.path.join('authorized_agents', filename)
             img = cv2.imread(img_path)
-
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            # finds face in img, runs detection multiple times
+            # finds face in img
             # scales img 1.3x to search, 5 is the # of occurrences needed to confirm a face
             detected_faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
-            if len(detected_faces) == 0: # if it didn't find a face in the img
-                return False, "Unknown"
+            # crop and save each face found
+            for (x, y, w, h) in detected_faces:
+                faces.append(gray[y:y+h, x:x+w])
+                labels.append(idx)
 
-            for (x,y,w,h) in detected_faces:
-                # crops just the face
-                face = gray[y:y + h, x:x+w]
+    # train the recognizer on all collected faces
+    if faces:
+        recognizer.train(faces, np.array(labels))
+        print(f"Trained on {len(faces)} faces: {list(id_to_name.values())}")
 
-                # compares face w/ all the currently trained faces
-                # label is who the recognizer thinks the person is (as a #)
-                label, confidence = recognizer.predict(face)
-                    
-                # lower confidence is better, less of a distance
+def check_authorization(photo_path):
+    # load the captured photo
+    img = cv2.imread(photo_path)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-                # authorized agent identified
-                if confidence < 70:
-                    name = id_to_name.get(label, "Unknown")
-                    return True, name
+    # try to find a face in the captured photo
+    detected_faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
-                # otherwise, match wasn't found
-                return False, "Unknown"
+    # if no face found, they're unknown
+    if len(detected_faces) == 0:
+        return False, "Unknown"
 
-            train_recognizer()
+    for (x, y, w, h) in detected_faces:
+        # crop just the face
+        face = gray[y:y+h, x:x+w]
+
+        # compare against trained faces
+        # lower confidence = better match
+        label, confidence = recognizer.predict(face)
+
+        # if confidence is below 70, it's a good match
+        if confidence < 70:
+            name = id_to_name.get(label, "Unknown")
+            return True, name  # authorized!
+
+    # face found but no match
+    return False, "Unknown"  # unauthorized!
+
+# train as soon as file is imported
+train_recognizer()
