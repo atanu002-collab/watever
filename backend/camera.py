@@ -5,4 +5,10 @@ import os
 os.makedirs('captures', exist_ok=True)
 
 def capture_photo():
+    camera = cv2.VideoCapture(0)
+    ret, frame = camera.read()
+
+    if ret:
+        path = f"captures/{datetime.now().strftime('%H-%M-%S')}
+        cv2.imwrite(path,frame)
     return None
