@@ -6,6 +6,7 @@ export function Auth() {
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
   const [status, setStatus] = useState<'idle' | 'scanning' | 'analyzing' | 'success' | 'denied'>('idle');
+  const [cameraError, setCameraError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const navigate = useNavigate();
@@ -22,8 +23,10 @@ export function Auth() {
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
+      setCameraError(false);
     } catch (err) {
       console.error('Camera access denied:', err);
+      setCameraError(true);
     }
   };
 
@@ -65,20 +68,12 @@ export function Auth() {
 
         if (isAuthorized) {
           setStatus('success');
-          const utterance = new SpeechSynthesisUtterance('Facial recognition successful. Access granted. Welcome, Agent.');
-          utterance.rate = 0.9;
-          utterance.pitch = 0.8;
-          window.speechSynthesis.speak(utterance);
 
           setTimeout(() => {
             navigate('/dashboard');
           }, 2000);
         } else {
           setStatus('denied');
-          const utterance = new SpeechSynthesisUtterance('Facial recognition failed. Unauthorized individual detected. Security breach initiated.');
-          utterance.rate = 1.0;
-          utterance.pitch = 0.7;
-          window.speechSynthesis.speak(utterance);
 
           setTimeout(() => {
             navigate('/unauthorized');
@@ -109,13 +104,29 @@ export function Auth() {
           </div>
 
           <div className="relative mb-6">
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              className="w-full h-auto rounded-lg border-2 border-cyan-500/50"
-            />
-            <canvas ref={canvasRef} className="hidden" />
+            {cameraError ? (
+              <div className="bg-black/60 border-2 border-yellow-500/50 rounded-lg p-12 text-center">
+                <Camera className="w-16 h-16 mx-auto mb-4 text-yellow-400" />
+                <h3 className="text-yellow-400 uppercase tracking-wider mb-2">Camera Access Required</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Please allow camera access in your browser to use facial recognition.
+                </p>
+                <button
+                  onClick={startCamera}
+                  className="bg-cyan-600/20 border-2 border-cyan-500 text-cyan-400 px-6 py-2 rounded uppercase tracking-wider hover:bg-cyan-600/30 transition-all"
+                >
+                  Enable Camera
+                </button>
+              </div>
+            ) : (
+              <>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  playsInline
+                  className="w-full h-auto rounded-lg border-2 border-cyan-500/50"
+                />
+                <canvas ref={canvasRef} className="hidden" />
 
             {status === 'scanning' && (
               <div className="absolute inset-0 border-4 border-cyan-400 rounded-lg pointer-events-none">
@@ -143,8 +154,11 @@ export function Auth() {
                 </div>
               </div>
             )}
+              </>
+            )}
           </div>
 
+          {!cameraError && (
           <div className="mb-6">
             <div className="flex items-center justify-between text-sm mb-2">
               <span className="text-cyan-400">Status:</span>
@@ -171,7 +185,9 @@ export function Auth() {
               </div>
             )}
           </div>
+          )}
 
+          {!cameraError && (
           <button
             onClick={handleScan}
             disabled={isScanning}
@@ -180,6 +196,7 @@ export function Auth() {
             <Camera className="w-5 h-5" />
             {isScanning ? 'Scanning...' : 'Begin Facial Scan'}
           </button>
+          )}
 
           <div className="mt-8 pt-6 border-t border-cyan-500/30 text-center">
             <p className="text-gray-600 text-xs uppercase tracking-wider">Classified // Top Secret // Eyes Only</p>
