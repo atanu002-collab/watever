@@ -9,3 +9,14 @@ def find_arduino_port():
         if 'Arduino' in port.description or 'CH340' in port.description or 'USB' in port.description:
             return port.device
         return None  # nothing is found
+
+def listen():
+    # first, find which port the arduinos plugged into
+    port = find_arduino_port()
+    print(f"Going to connect to the Arduino on {port}")
+
+    # open a connection the arduino (9600 baud), it must match the arduino 
+    ser = serial.Serial(port, 9600, timeout=1)
+
+    print("Listening for motion: ")
+    
