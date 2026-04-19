@@ -14,3 +14,7 @@ id_to_name = {}
 def train_identifer():
     faces = []
     labels = []
+
+    # loops thru every photo in authorized_agents
+    for idx, filename in enumerate(os.listdir('authorized_agents')):
+        if filename.endswith('.jpg') or filename.endswith('.png'):
