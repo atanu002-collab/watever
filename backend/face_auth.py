@@ -22,3 +22,23 @@ def train_identifer():
     # loops thru every photo in authorized_agents
     for idx, filename in enumerate(os.listdir('authorized_agents')):
         if filename.endswith('.jpg') or filename.endswith('.png'):
+            
+            # gets persons name from the filename (ex. "andrew_1" -> "andrew")
+            name = filename.replace('.jpg', '').replace('.png', '').rsplit('_', 1)[0]
+            
+            # if not already identified, assigns a new id
+            if name not in name_to_id:
+                name_to_id[name] = current_id
+                id_to_name[current_id] = name
+                current_id += 1
+
+                idx = name_to_id[name]
+
+                # loads image + loads in grayscale so identifier can use it
+                img_path = os.path.join('authorized_agents', filename)
+                img = cv2.imread(img_path)
+
+                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+                # finds face 
+                detected_faces = face_cascade.detectMultiScale(gray, 1.3, 5)
