@@ -30,7 +30,9 @@ def listen():
             path = capture_photo()
             print(f"Photo saved: {path}")
 
-    if __name__ == "__main__":
+    # runs listen() only if this files executed directly.
+    # so listen() isn't executed when other files import from this one 
+    if __name__ == "__main__": 
         listen()
 
     
