@@ -11,7 +11,7 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 # identifier works w numbers, so this keeps a dictionary that associates numbers with names
 id_to_name = {}
 
-def train_identifer():
+def train_recognizer():
     faces = []
     labels = []
 
@@ -65,4 +65,4 @@ def train_identifer():
                 # otherwise, match wasn't found
                 return False, "Unknown"
 
-            train_identifer()
+            train_recognizer()
