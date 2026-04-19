@@ -6,14 +6,14 @@ os.makedirs('captures', exist_ok=True) # makes the captures/ folder if it's not 
 
 def capture_photo():
     # turns on webcam
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(1)
 
     # takes a photo
     ret, frame = camera.read()
 
     # if ret == true, a photo was succesfully taken
     if ret:
-        path = f"captures/{datetime.now().strftime('%H-%M-%S')}
+        path = f"captures/{datetime.now().strftime('%H-%M-%S')}.jpg"
 
         # saves to captures/
         cv2.imwrite(path,frame)
