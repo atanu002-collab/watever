@@ -19,4 +19,18 @@ def listen():
     ser = serial.Serial(port, 9600, timeout=1)
 
     print("Listening for motion: ")
+    while True:
+        # read what arduino sends via usb 
+        line = ser.readline().decode('utf-8').strip()
+
+        # sensor is tripped, captures a photo
+        if line == "INTRUDER":
+            print("Motion detected, capturing photo:")
+
+            path = capture_photo()
+            print(f"Photo saved: {path}")
+
+    if __name__ == "__main__":
+        listen()
+
     
