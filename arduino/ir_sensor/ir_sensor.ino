@@ -10,7 +10,7 @@ void loop() {
   int state = digitalRead(sensorPin);
 
   if (state == 0 && lastState == 1) {
-    Serial.println("INTRUDER");  // Python is listening for exactly this word
+    Serial.println("INTRUDER"); 
   }
 
   lastState = state;
