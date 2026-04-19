@@ -1,6 +1,6 @@
-import { Link } from 'react-router';
-import { ArrowLeft, Shield, Eye } from 'lucide-react';
-import { useState } from 'react';
+import { Link } from "react-router";
+import { ArrowLeft, Shield, Eye } from "lucide-react";
+import { useState } from "react";
 
 export function Security() {
   const [faceDetection, setFaceDetection] = useState(true);
@@ -14,13 +14,20 @@ export function Security() {
         <header className="mb-8 border-b border-cyan-500/30 pb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link to="/" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+              <Link
+                to="/"
+                className="text-cyan-400 hover:text-cyan-300 transition-colors"
+              >
                 <ArrowLeft className="w-6 h-6" />
               </Link>
               <Shield className="w-10 h-10 text-cyan-400" />
               <div>
-                <h1 className="text-cyan-400 uppercase tracking-wider">Security Settings</h1>
-                <p className="text-gray-500 text-sm">Manage your camera and detection settings</p>
+                <h1 className="text-cyan-400 uppercase tracking-wider">
+                  Security Settings
+                </h1>
+                <p className="text-gray-500 text-sm">
+                  Manage your camera and detection settings
+                </p>
               </div>
             </div>
           </div>
@@ -30,7 +37,9 @@ export function Security() {
           <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm">
             <div className="flex items-center gap-3 mb-6">
               <Eye className="w-6 h-6 text-cyan-400" />
-              <h2 className="text-cyan-400 uppercase tracking-wider">Detection Settings</h2>
+              <h2 className="text-cyan-400 uppercase tracking-wider">
+                Detection Settings
+              </h2>
             </div>
 
             <div className="space-y-4">
@@ -47,12 +56,12 @@ export function Security() {
                 <button
                   onClick={() => setFaceDetection(!faceDetection)}
                   className={`w-12 h-6 rounded-full transition-colors ${
-                    faceDetection ? 'bg-cyan-500' : 'bg-gray-600'
+                    faceDetection ? "bg-cyan-500" : "bg-gray-600"
                   }`}
                 >
                   <div
                     className={`w-5 h-5 bg-white rounded-full transition-transform ${
-                      faceDetection ? 'translate-x-6' : 'translate-x-1'
+                      faceDetection ? "translate-x-6" : "translate-x-1"
                     }`}
                   />
                 </button>
@@ -71,12 +80,12 @@ export function Security() {
                 <button
                   onClick={() => setMotionDetection(!motionDetection)}
                   className={`w-12 h-6 rounded-full transition-colors ${
-                    motionDetection ? 'bg-cyan-500' : 'bg-gray-600'
+                    motionDetection ? "bg-cyan-500" : "bg-gray-600"
                   }`}
                 >
                   <div
                     className={`w-5 h-5 bg-white rounded-full transition-transform ${
-                      motionDetection ? 'translate-x-6' : 'translate-x-1'
+                      motionDetection ? "translate-x-6" : "translate-x-1"
                     }`}
                   />
                 </button>
@@ -87,7 +96,9 @@ export function Security() {
           <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm">
             <div className="flex items-center gap-3 mb-6">
               <Shield className="w-6 h-6 text-cyan-400" />
-              <h2 className="text-cyan-400 uppercase tracking-wider">System Info</h2>
+              <h2 className="text-cyan-400 uppercase tracking-wider">
+                System Info
+              </h2>
             </div>
 
             <div className="space-y-3">
@@ -110,7 +121,9 @@ export function Security() {
         </div>
 
         <footer className="mt-8 pt-6 border-t border-cyan-500/30 text-center text-gray-600 text-xs">
-          <p className="uppercase tracking-wider">Monitoring system dashboard</p>
+          <p className="uppercase tracking-wider">
+            Monitoring system dashboard
+          </p>
         </footer>
       </div>
     </div>

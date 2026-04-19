@@ -1,10 +1,10 @@
-import { Link } from 'react-router';
-import { WebcamCapture } from '../components/WebcamCapture';
-import { ArrowLeft, Camera } from 'lucide-react';
+import { Link } from "react-router";
+import { WebcamCapture } from "../components/WebcamCapture";
+import { ArrowLeft, Camera } from "lucide-react";
 
 export function LiveFeed() {
   const handleCapture = (imageData: string) => {
-    console.log('Captured:', imageData);
+    console.log("Captured:", imageData);
   };
 
   return (
@@ -28,9 +28,7 @@ export function LiveFeed() {
               <h1 className="text-cyan-400 uppercase tracking-wider">
                 Live Feed
               </h1>
-              <p className="text-gray-500 text-sm">
-                Real-time camera stream
-              </p>
+              <p className="text-gray-500 text-sm">Real-time camera stream</p>
             </div>
           </div>
         </header>
@@ -45,10 +43,7 @@ export function LiveFeed() {
           </div>
 
           <div className="rounded-lg overflow-hidden bg-black min-h-[700px] flex items-center justify-center">
-            <WebcamCapture
-              onCapture={handleCapture}
-              isActive={true}
-            />
+            <WebcamCapture onCapture={handleCapture} isActive={true} />
           </div>
         </div>
 

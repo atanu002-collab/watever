@@ -1,4 +1,4 @@
-import { AlertTriangle, Skull, ShieldAlert, Camera, Radio } from 'lucide-react';
+import { AlertTriangle, Skull, ShieldAlert, Camera, Radio } from "lucide-react";
 
 export function Unauthorized() {
   return (
@@ -11,13 +11,21 @@ export function Unauthorized() {
             <div className="flex items-center gap-4">
               <Skull className="w-12 h-12 text-red-500" />
               <div>
-                <h1 className="text-red-500 uppercase tracking-wider">⚠️ SECURITY BREACH ⚠️</h1>
-                <p className="text-red-400 text-sm">UNAUTHORIZED ACCESS DETECTED</p>
+                <h1 className="text-red-500 uppercase tracking-wider">
+                  ⚠️ SECURITY BREACH ⚠️
+                </h1>
+                <p className="text-red-400 text-sm">
+                  UNAUTHORIZED ACCESS DETECTED
+                </p>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-red-500 font-mono">ALERT LEVEL: CRITICAL</div>
-              <div className="text-red-400 text-sm font-mono">{new Date().toLocaleTimeString()}</div>
+              <div className="text-red-500 font-mono">
+                ALERT LEVEL: CRITICAL
+              </div>
+              <div className="text-red-400 text-sm font-mono">
+                {new Date().toLocaleTimeString()}
+              </div>
             </div>
           </div>
         </header>
@@ -39,38 +47,70 @@ export function Unauthorized() {
             <div className="bg-black/60 border-2 border-red-500 rounded-lg p-6 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-3">
                 <Camera className="w-6 h-6 text-red-500" />
-                <h3 className="text-red-500 uppercase tracking-wider">Visual Recording</h3>
+                <h3 className="text-red-500 uppercase tracking-wider">
+                  Visual Recording
+                </h3>
               </div>
-              <p className="text-red-400 text-sm">All cameras active. Facial recognition in progress.</p>
+              <p className="text-red-400 text-sm">
+                All cameras active. Facial recognition in progress.
+              </p>
             </div>
 
             <div className="bg-black/60 border-2 border-red-500 rounded-lg p-6 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-3">
                 <Radio className="w-6 h-6 text-red-500" />
-                <h3 className="text-red-500 uppercase tracking-wider">Alert Transmitted</h3>
+                <h3 className="text-red-500 uppercase tracking-wider">
+                  Alert Transmitted
+                </h3>
               </div>
-              <p className="text-red-400 text-sm">Security teams have been notified. ETA: 2 minutes.</p>
+              <p className="text-red-400 text-sm">
+                Security teams have been notified. ETA: 2 minutes.
+              </p>
             </div>
 
             <div className="bg-black/60 border-2 border-red-500 rounded-lg p-6 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-3">
                 <AlertTriangle className="w-6 h-6 text-red-500" />
-                <h3 className="text-red-500 uppercase tracking-wider">Lockdown Active</h3>
+                <h3 className="text-red-500 uppercase tracking-wider">
+                  Lockdown Active
+                </h3>
               </div>
-              <p className="text-red-400 text-sm">All exits sealed. Authorities en route.</p>
+              <p className="text-red-400 text-sm">
+                All exits sealed. Authorities en route.
+              </p>
             </div>
           </div>
 
           <div className="bg-black/60 border-2 border-red-500 rounded-lg p-6 backdrop-blur-sm">
-            <h3 className="text-red-500 uppercase tracking-wider mb-4">⚠️ WARNING ⚠️</h3>
+            <h3 className="text-red-500 uppercase tracking-wider mb-4">
+              ⚠️ WARNING ⚠️
+            </h3>
             <div className="space-y-2 font-mono text-sm">
-              <div className="text-red-400">[{new Date().toLocaleTimeString()}] UNAUTHORIZED ACCESS ATTEMPT DETECTED</div>
-              <div className="text-red-400">[{new Date().toLocaleTimeString()}] SECURITY PROTOCOL ALPHA-7 INITIATED</div>
-              <div className="text-red-400">[{new Date().toLocaleTimeString()}] ALL SURVEILLANCE SYSTEMS ACTIVATED</div>
-              <div className="text-red-400">[{new Date().toLocaleTimeString()}] BIOMETRIC DATA BEING RECORDED</div>
-              <div className="text-red-400">[{new Date().toLocaleTimeString()}] LAW ENFORCEMENT NOTIFIED</div>
-              <div className="text-red-400">[{new Date().toLocaleTimeString()}] PERIMETER LOCKDOWN ENGAGED</div>
-              <div className="text-red-400">[{new Date().toLocaleTimeString()}] INTRUDER LOCATION: TRACKED</div>
+              <div className="text-red-400">
+                [{new Date().toLocaleTimeString()}] UNAUTHORIZED ACCESS ATTEMPT
+                DETECTED
+              </div>
+              <div className="text-red-400">
+                [{new Date().toLocaleTimeString()}] SECURITY PROTOCOL ALPHA-7
+                INITIATED
+              </div>
+              <div className="text-red-400">
+                [{new Date().toLocaleTimeString()}] ALL SURVEILLANCE SYSTEMS
+                ACTIVATED
+              </div>
+              <div className="text-red-400">
+                [{new Date().toLocaleTimeString()}] BIOMETRIC DATA BEING
+                RECORDED
+              </div>
+              <div className="text-red-400">
+                [{new Date().toLocaleTimeString()}] LAW ENFORCEMENT NOTIFIED
+              </div>
+              <div className="text-red-400">
+                [{new Date().toLocaleTimeString()}] PERIMETER LOCKDOWN ENGAGED
+              </div>
+              <div className="text-red-400">
+                [{new Date().toLocaleTimeString()}] INTRUDER LOCATION: TRACKED
+              </div>
             </div>
           </div>
 
@@ -79,9 +119,11 @@ export function Unauthorized() {
               🚨 YOU ARE BEING MONITORED 🚨
             </p>
             <p className="text-red-400 text-sm">
-              This incident has been logged and reported to the appropriate authorities.
+              This incident has been logged and reported to the appropriate
+              authorities.
               <br />
-              Your IP address, device information, and biometric data have been recorded.
+              Your IP address, device information, and biometric data have been
+              recorded.
               <br />
               Unauthorized access to classified systems is a federal crime.
             </p>

@@ -1,5 +1,5 @@
-import { Link } from 'react-router';
-import { Camera, Shield, AlertTriangle, Skull } from 'lucide-react';
+import { Link } from "react-router";
+import { Camera, Shield, AlertTriangle, Skull } from "lucide-react";
 
 export function Dashboard() {
   return (
@@ -12,13 +12,21 @@ export function Dashboard() {
             <div className="flex items-center gap-4">
               <Skull className="w-10 h-10 text-cyan-400" />
               <div>
-                <h1 className="text-cyan-400 uppercase tracking-wider">Project Argus</h1>
-                <p className="text-gray-500 text-sm">Advanced Surveillance Intelligence System</p>
+                <h1 className="text-cyan-400 uppercase tracking-wider">
+                  Project Argus
+                </h1>
+                <p className="text-gray-500 text-sm">
+                  Advanced Surveillance Intelligence System
+                </p>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-cyan-400 font-mono">{new Date().toLocaleDateString()}</div>
-              <div className="text-gray-500 text-sm font-mono">{new Date().toLocaleTimeString()}</div>
+              <div className="text-cyan-400 font-mono">
+                {new Date().toLocaleDateString()}
+              </div>
+              <div className="text-gray-500 text-sm font-mono">
+                {new Date().toLocaleTimeString()}
+              </div>
             </div>
           </div>
         </header>
@@ -27,30 +35,44 @@ export function Dashboard() {
           <Link to="/live-feed" className="group">
             <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-8 backdrop-blur-sm hover:border-cyan-500 transition-all cursor-pointer">
               <Camera className="w-16 h-16 mx-auto mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h2 className="text-center text-cyan-400 uppercase tracking-wider mb-2">Live Feed</h2>
-              <p className="text-center text-gray-500 text-sm">Access surveillance cameras</p>
+              <h2 className="text-center text-cyan-400 uppercase tracking-wider mb-2">
+                Live Feed
+              </h2>
+              <p className="text-center text-gray-500 text-sm">
+                Access surveillance cameras
+              </p>
             </div>
           </Link>
 
           <Link to="/security" className="group">
             <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-8 backdrop-blur-sm hover:border-cyan-500 transition-all cursor-pointer">
               <Shield className="w-16 h-16 mx-auto mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h2 className="text-center text-cyan-400 uppercase tracking-wider mb-2">Security</h2>
-              <p className="text-center text-gray-500 text-sm">System configuration</p>
+              <h2 className="text-center text-cyan-400 uppercase tracking-wider mb-2">
+                Security
+              </h2>
+              <p className="text-center text-gray-500 text-sm">
+                System configuration
+              </p>
             </div>
           </Link>
 
           <Link to="/alerts" className="group">
             <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-8 backdrop-blur-sm hover:border-cyan-500 transition-all cursor-pointer">
               <AlertTriangle className="w-16 h-16 mx-auto mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h2 className="text-center text-cyan-400 uppercase tracking-wider mb-2">Alerts</h2>
-              <p className="text-center text-gray-500 text-sm">Threat notifications</p>
+              <h2 className="text-center text-cyan-400 uppercase tracking-wider mb-2">
+                Alerts
+              </h2>
+              <p className="text-center text-gray-500 text-sm">
+                Threat notifications
+              </p>
             </div>
           </Link>
         </div>
 
         <div className="mt-12 bg-black/40 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm max-w-6xl mx-auto">
-          <h3 className="text-cyan-400 uppercase tracking-wider mb-4">System Status</h3>
+          <h3 className="text-cyan-400 uppercase tracking-wider mb-4">
+            System Status
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-sm">
             <div className="flex justify-between">
               <span className="text-gray-500">System:</span>
@@ -68,7 +90,9 @@ export function Dashboard() {
         </div>
 
         <footer className="mt-8 pt-6 border-t border-cyan-500/30 text-center text-gray-600 text-xs">
-          <p className="uppercase tracking-wider">Classified // Top Secret // Eyes Only</p>
+          <p className="uppercase tracking-wider">
+            Classified // Top Secret // Eyes Only
+          </p>
         </footer>
       </div>
     </div>
