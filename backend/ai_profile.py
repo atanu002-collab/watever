@@ -1,10 +1,14 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import google.generativeai as genai
 import os
 import PIL.Image
 
+
 # calls api key
 genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 # GENERATE THREATS YEAHHHH!
 def generate_profile(photo_path, authorized, name="Unknown"):  # if the face recognizer returns "Unknown"
@@ -12,8 +16,7 @@ def generate_profile(photo_path, authorized, name="Unknown"):  # if the face rec
     img = PIL.Image.open(photo_path)
 
     # initialize statuses
-    status = f"AUTHORIZED AGENT: {name}" if authorized
-    else "UNAUTHORIZED INTRUDER"
+    status = f"AUTHORIZED AGENT: {name}" if authorized else "UNAUTHORIZED INTRUDER"
 
     # prompt to generate threat profile (i just asked chat to make me this prompt)
     prompt = prompt = f"""You are a spy intelligence system called ARGUS. 
