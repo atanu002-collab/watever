@@ -4,11 +4,12 @@ import os # so we can make folders
 
 os.makedirs('captures', exist_ok=True) # makes the captures/ folder if it's not there alr
 
-def capture_photo():
-    # turns on webcam
-    camera = cv2.VideoCapture(1)
+# open camera ONCE when backend starts so it's ready instantly
+camera = cv2.VideoCapture(0)
+camera.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
-    # takes a photo
+def capture_photo():
+    # takes a photo instantly since camera is already on
     ret, frame = camera.read()
 
     # if ret == true, a photo was succesfully taken
@@ -16,10 +17,6 @@ def capture_photo():
         path = f"captures/{datetime.now().strftime('%H-%M-%S')}.jpg"
 
         # saves to captures/
-        cv2.imwrite(path,frame)
-
-         # turns off webcam
-        camera.release()
+        cv2.imwrite(path, frame)
         return path
-    camera.release()
     return None
