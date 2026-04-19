@@ -43,3 +43,12 @@ def train_identifer():
                 # finds face in img, runs detection multiple times
                 # scales img 1.3x to search, 5 is the # of occurrences needed to confirm a face
                 detected_faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+                if len(detected_faces) == 0: # if it didn't find a face in the img
+                    return False, "Unknown"
+
+                for (x,y,w,h) in detected_faces:
+                    # crops just the face
+                    face = gray[y:y + h, x:x+w]
+
+                    # compare face w/ all the currently trained faces
