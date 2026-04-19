@@ -40,5 +40,6 @@ def train_identifer():
 
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-                # finds face 
+                # finds face in img, runs detection multiple times
+                # scales img 1.3x to search, 5 is the # of occurrences needed to confirm a face
                 detected_faces = face_cascade.detectMultiScale(gray, 1.3, 5)
