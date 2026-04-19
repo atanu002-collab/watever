@@ -1,12 +1,10 @@
 import { Link } from 'react-router';
-import { ArrowLeft, Skull, Shield, Lock, Key, Bell, Eye } from 'lucide-react';
+import { ArrowLeft, Shield, Eye } from 'lucide-react';
 import { useState } from 'react';
 
 export function Security() {
-  const [autoArm, setAutoArm] = useState(false);
+  const [faceDetection, setFaceDetection] = useState(true);
   const [motionDetection, setMotionDetection] = useState(true);
-  const [audioAlerts, setAudioAlerts] = useState(true);
-  const [recordingEnabled, setRecordingEnabled] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black text-gray-100">
@@ -19,10 +17,10 @@ export function Security() {
               <Link to="/" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                 <ArrowLeft className="w-6 h-6" />
               </Link>
-              <Skull className="w-10 h-10 text-cyan-400" />
+              <Shield className="w-10 h-10 text-cyan-400" />
               <div>
                 <h1 className="text-cyan-400 uppercase tracking-wider">Security Settings</h1>
-                <p className="text-gray-500 text-sm">System Configuration & Access Control</p>
+                <p className="text-gray-500 text-sm">Manage your camera and detection settings</p>
               </div>
             </div>
           </div>
@@ -31,8 +29,8 @@ export function Security() {
         <div className="space-y-6">
           <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm">
             <div className="flex items-center gap-3 mb-6">
-              <Shield className="w-6 h-6 text-cyan-400" />
-              <h2 className="text-cyan-400 uppercase tracking-wider">Surveillance Settings</h2>
+              <Eye className="w-6 h-6 text-cyan-400" />
+              <h2 className="text-cyan-400 uppercase tracking-wider">Detection Settings</h2>
             </div>
 
             <div className="space-y-4">
@@ -40,19 +38,23 @@ export function Security() {
                 <div className="flex items-center gap-3">
                   <Eye className="w-5 h-5 text-cyan-400" />
                   <div>
-                    <p className="text-gray-200">Auto-Arm on Startup</p>
-                    <p className="text-sm text-gray-500">Automatically arm system when launched</p>
+                    <p className="text-gray-200">Facial Detection</p>
+                    <p className="text-sm text-gray-500">
+                      Detect and recognize faces from camera feed
+                    </p>
                   </div>
                 </div>
                 <button
-                  onClick={() => setAutoArm(!autoArm)}
+                  onClick={() => setFaceDetection(!faceDetection)}
                   className={`w-12 h-6 rounded-full transition-colors ${
-                    autoArm ? 'bg-cyan-500' : 'bg-gray-600'
+                    faceDetection ? 'bg-cyan-500' : 'bg-gray-600'
                   }`}
                 >
-                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${
-                    autoArm ? 'translate-x-6' : 'translate-x-1'
-                  }`} />
+                  <div
+                    className={`w-5 h-5 bg-white rounded-full transition-transform ${
+                      faceDetection ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
                 </button>
               </div>
 
@@ -61,7 +63,9 @@ export function Security() {
                   <Eye className="w-5 h-5 text-cyan-400" />
                   <div>
                     <p className="text-gray-200">Motion Detection</p>
-                    <p className="text-sm text-gray-500">Trigger capture on movement detection</p>
+                    <p className="text-sm text-gray-500">
+                      Detect movement and trigger alerts
+                    </p>
                   </div>
                 </div>
                 <button
@@ -70,49 +74,11 @@ export function Security() {
                     motionDetection ? 'bg-cyan-500' : 'bg-gray-600'
                   }`}
                 >
-                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${
-                    motionDetection ? 'translate-x-6' : 'translate-x-1'
-                  }`} />
-                </button>
-              </div>
-
-              <div className="flex items-center justify-between p-4 bg-black/40 rounded border border-cyan-500/20">
-                <div className="flex items-center gap-3">
-                  <Bell className="w-5 h-5 text-cyan-400" />
-                  <div>
-                    <p className="text-gray-200">Audio Briefings</p>
-                    <p className="text-sm text-gray-500">Enable voice threat assessments</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setAudioAlerts(!audioAlerts)}
-                  className={`w-12 h-6 rounded-full transition-colors ${
-                    audioAlerts ? 'bg-cyan-500' : 'bg-gray-600'
-                  }`}
-                >
-                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${
-                    audioAlerts ? 'translate-x-6' : 'translate-x-1'
-                  }`} />
-                </button>
-              </div>
-
-              <div className="flex items-center justify-between p-4 bg-black/40 rounded border border-cyan-500/20">
-                <div className="flex items-center gap-3">
-                  <Eye className="w-5 h-5 text-cyan-400" />
-                  <div>
-                    <p className="text-gray-200">Continuous Recording</p>
-                    <p className="text-sm text-gray-500">Save all captured footage to archive</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setRecordingEnabled(!recordingEnabled)}
-                  className={`w-12 h-6 rounded-full transition-colors ${
-                    recordingEnabled ? 'bg-cyan-500' : 'bg-gray-600'
-                  }`}
-                >
-                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${
-                    recordingEnabled ? 'translate-x-6' : 'translate-x-1'
-                  }`} />
+                  <div
+                    className={`w-5 h-5 bg-white rounded-full transition-transform ${
+                      motionDetection ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
                 </button>
               </div>
             </div>
@@ -120,49 +86,31 @@ export function Security() {
 
           <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm">
             <div className="flex items-center gap-3 mb-6">
-              <Lock className="w-6 h-6 text-cyan-400" />
-              <h2 className="text-cyan-400 uppercase tracking-wider">Access Control</h2>
+              <Shield className="w-6 h-6 text-cyan-400" />
+              <h2 className="text-cyan-400 uppercase tracking-wider">System Info</h2>
             </div>
 
             <div className="space-y-3">
               <div className="p-4 bg-black/40 rounded border border-cyan-500/20">
-                <p className="text-gray-200 mb-2">Security Clearance Level</p>
-                <p className="text-cyan-400 font-mono">TOP SECRET // SCI</p>
+                <p className="text-gray-200 mb-2">Camera Status</p>
+                <p className="text-cyan-400 font-mono">Connected</p>
               </div>
 
               <div className="p-4 bg-black/40 rounded border border-cyan-500/20">
-                <p className="text-gray-200 mb-2">Authorized User</p>
-                <p className="text-cyan-400 font-mono">AGENT-001</p>
+                <p className="text-gray-200 mb-2">Detection Mode</p>
+                <p className="text-cyan-400 font-mono">Active</p>
               </div>
 
               <div className="p-4 bg-black/40 rounded border border-cyan-500/20">
-                <p className="text-gray-200 mb-2">Session Token</p>
-                <p className="text-cyan-400 font-mono text-sm">X7K9-P2LM-QW45-RT89</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-black/40 border border-cyan-500/30 rounded-lg p-6 backdrop-blur-sm">
-            <div className="flex items-center gap-3 mb-6">
-              <Key className="w-6 h-6 text-cyan-400" />
-              <h2 className="text-cyan-400 uppercase tracking-wider">Encryption</h2>
-            </div>
-
-            <div className="p-4 bg-black/40 rounded border border-cyan-500/20">
-              <div className="flex justify-between mb-2">
-                <span className="text-gray-200">Encryption Protocol:</span>
-                <span className="text-green-400">AES-256-GCM</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-200">Status:</span>
-                <span className="text-green-400">ACTIVE</span>
+                <p className="text-gray-200 mb-2">System Version</p>
+                <p className="text-cyan-400 font-mono">1.0</p>
               </div>
             </div>
           </div>
         </div>
 
         <footer className="mt-8 pt-6 border-t border-cyan-500/30 text-center text-gray-600 text-xs">
-          <p className="uppercase tracking-wider">Classified // Top Secret // Eyes Only</p>
+          <p className="uppercase tracking-wider">Monitoring system dashboard</p>
         </footer>
       </div>
     </div>
