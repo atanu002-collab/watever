@@ -1,8 +1,8 @@
 import cv2
 from datetime import datetime
-import os
+import os # so we can make folders
 
-os.makedirs('captures', exist_ok=True)
+os.makedirs('captures', exist_ok=True) # makes the captures/ folder if it's not there alr
 
 def capture_photo():
     # turns on webcam
